@@ -1,0 +1,16 @@
+# Pastas locais
+gitignored/
+
+# Editores
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Ambiente
+.env
+.env.*
+!.env.example
+*.log
