@@ -3,6 +3,11 @@ import mysql from 'mysql2';
 
 const dotenvConfig = dotenv.config();
 
+if (dotenvConfig.error) {
+    console.error('Erro ao carregar .env');
+    console.error(dotenvConfig.error);
+}
+
 export const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
