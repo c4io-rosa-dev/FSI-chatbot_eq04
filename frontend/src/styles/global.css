@@ -18,6 +18,7 @@
   --wood: #3d2a1a;
   --wood-deep: #2a1b0e;
   --burgundy: #5a2418;
+  --online: #358600;
 
   --serif: 'Playfair Display', 'Times New Roman', serif;
   --display: 'Bebas Neue', 'Helvetica Neue Condensed', Impact, sans-serif;
@@ -28,11 +29,6 @@
   --pad: clamp(20px, 4vw, 56px);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 html,
 body {
   background: var(--paper);

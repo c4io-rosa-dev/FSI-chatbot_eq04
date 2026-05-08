@@ -1,9 +1,12 @@
 import { ChatbotHeaderProps } from "@/interfaces/IChatbotHeader";
 import { Icon } from "../Icon";
+import { useState } from "react";
 
 
 
 export default function ChatbotHeader({ fullscreen, onToggleFullscreen, onClose }: ChatbotHeaderProps) {
+
+  const [isOnline, setIsOnline] = useState(true);
   return (
     <div
       style={{
@@ -37,7 +40,7 @@ export default function ChatbotHeader({ fullscreen, onToggleFullscreen, onClose 
               right: -2,
               width: 12,
               height: 12,
-              background: '#C58A3A',
+              background: isOnline ? '#358600' : '#C58A3A',
               borderRadius: '50%',
               border: '2px solid var(--ink)',
             }}
@@ -57,7 +60,7 @@ export default function ChatbotHeader({ fullscreen, onToggleFullscreen, onClose 
               marginTop: 4,
             }}
           >
-            Em manutenção
+            {isOnline ? 'ONLINE' : 'EM MANUTENÇÃO'}
           </div>
         </div>
       </div>
