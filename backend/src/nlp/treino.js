@@ -103,4 +103,12 @@ export async function treinarBot(manager) {
         Telefone: \n 
     `,
   );
+
+  //  Maneiras de extrair variavel
+  manager.addDocument(
+    "pt",
+    `
+        Nome: %nome% 
+    `,
+  );
 }
