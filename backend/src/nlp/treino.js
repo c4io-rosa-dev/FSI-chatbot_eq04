@@ -42,6 +42,7 @@ export async function treinarBot(manager) {
             2 - Corte com acabamento - R$ 45,00\n
             3 - Corte Degradê - R$ 50,00\n
             4 - Corte Social - R$ 40,00\n
+            5 - Mais informações
         ` 
     );
     manager.addAnswer(
@@ -53,6 +54,7 @@ export async function treinarBot(manager) {
             2 - Corte com acabamento - R$ 45,00\n
             3 - Corte Degradê - R$ 50,00\n
             4 - Corte Social - R$ 40,00\n
+            5 - Mais informações
         ` 
     );
     manager.addAnswer(
@@ -64,10 +66,18 @@ export async function treinarBot(manager) {
             2 - Corte com acabamento - R$ 45,00\n
             3 - Corte Degradê - R$ 50,00\n
             4 - Corte Social - R$ 40,00\n
+            5 - Mais informações
         ` 
     );
 
-    manager.addDocument("")
+    manager.addDocument("pt", "1", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "2", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "3", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "4", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "Corte Simples", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "Corte com acabamento", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "Corte Degradê", "fluxo.cabelo.cortes");
+    manager.addDocument("pt", "Corte Social", "fluxo.cabelo.cortes");
 
 
 }
