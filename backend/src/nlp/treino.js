@@ -104,6 +104,82 @@ export async function treinarBot(manager) {
     `,
   );
 
+  // Fluxo Barba
+  manager.addDocument("pt", "2", "fluxo.barba");
+  manager.addDocument("pt", "barba", "fluxo.barba");
+  manager.addDocument("pt", "fazer barba", "fluxo.barba");
+  manager.addDocument("pt", "barbear", "fluxo.barba");
+  manager.addDocument("pt", "quero fazer a barba", "fluxo.barba");
+
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba",
+    `
+            Certo! Aqui estão os estilos para barba disponíveis: \n
+            1 - Corte Simples Máquina - R$ 20,00\n
+            2 - Corte Simples Navalha - R$ 25,00\n
+            3 - Micropigmentação - R$ 20,00\n
+            4 - Mais informações\n
+        `,
+  );
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba",
+    `
+            Ótimo! Conheça os estilos para barba disponíveis: \n
+            1 - Corte Simples Máquina - R$ 20,00\n
+            2 - Corte Simples Navalha - R$ 25,00\n
+            3 - Micropigmentação - R$ 20,00\n
+            4 - Mais informações\n
+        `,
+  );
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba",
+    `
+            Tranquilo! Estes são os estilos para barba disponíveis: \n
+            1 - Corte Simples Máquina - R$ 20,00\n
+            2 - Corte Simples Navalha - R$ 25,00\n
+            3 - Micropigmentação - R$ 20,00\n
+            4 - Mais informações\n
+        `,
+  );
+
+  manager.addDocument("pt", "1", "fluxo.barba.cortes");
+  manager.addDocument("pt", "2", "fluxo.barba.cortes");
+  manager.addDocument("pt", "3", "fluxo.barba.cortes");
+  manager.addDocument("pt", "Corte Simples Máquina", "fluxo.barba.cortes");
+  manager.addDocument("pt", "Corte Simples Navalha", "fluxo.barba.cortes");
+  manager.addDocument("pt", "Micropigmentação", "fluxo.barba.cortes");
+
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba.cortes",
+    `Boa escolha! Agora preencha essa ficha de agendamento:\n
+         Nome: \n 
+         Telefone: \n 
+        `,
+  );
+
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba.cortes",
+    `Ótima escolha! Agora preencha essa ficha de agendamento:\n
+         Nome: \n 
+         Telefone: \n 
+    `,
+  );
+
+  manager.addAnswer(
+    "pt",
+    "fluxo.barba.cortes",
+    `   Beleza! Agora preencha essa ficha de agendamento:\n
+        Nome: \n 
+        Telefone: \n 
+    `,
+  );
+
+  
   //  Maneiras de extrair variavel
   manager.addDocument(
     "pt",
