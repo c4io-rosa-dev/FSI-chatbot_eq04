@@ -1,0 +1,22 @@
+
+// Estado do Usuario!
+
+const usuarios = {};
+
+export function getUsuario(id) {
+    if (!usuarios[id]) {
+        usuarios[id] = {
+            etapa: "inicio",
+            servico: null,
+            nome: null,
+            telefone: null
+        };
+    }
+
+    return usuarios[id];
+}
+
+
+export function resetUsuario(id) {
+    delete usuarios[id];
+}
