@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import manager from '../nlp/manager.js';
+import manager from '../bot/manager.js';
 
 
 const router = Router();

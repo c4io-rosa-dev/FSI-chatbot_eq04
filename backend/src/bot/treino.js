@@ -1,7 +1,6 @@
 export async function treinarBot(manager) {
   // Saudações
   manager.addDocument("pt", "olá", "saudacao");
-  manager.addDocument("pt", "olá", "saudacao");
   manager.addDocument("pt", "oi", "saudacao");
   manager.addDocument("pt", "bom dia", "saudacao");
   manager.addDocument("pt", "boa tarde", "saudacao");
@@ -184,7 +183,7 @@ export async function treinarBot(manager) {
   manager.addDocument(
     "pt",
     `
-        Nome: %nome% 
+      Nome: %nome% 
     `,
   );
 }
