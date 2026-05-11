@@ -8,20 +8,20 @@ export async function treinarBot(manager) {
   manager.addDocument("pt", "eae", "saudacao");
   manager.addDocument("pt", "opa", "saudacao");
 
-  manager.addAnswer(
-    "pt",
-    "saudacao",
-    `
-            Olá! Seja bem-vindo a Barbearia ACDKS!\n
-            Explore os nossos seriços e marque um horário conosco.\n
-            Para começar, escolha o que você pretende fazer em nossa barbearia: \n
-            1 - Cabelo
-            2 - Barba
-            3 - Combos
-            4 - Planos
-            5 - Falar com um atendente
-        `,
-  );
+  // manager.addAnswer(
+  //   "pt",
+  //   "saudacao",
+  //   `
+  //           Olá! Seja bem-vindo a Barbearia ACDKS!\n
+  //           Explore os nossos seriços e marque um horário conosco.\n
+  //           Para começar, escolha o que você pretende fazer em nossa barbearia: \n
+  //           1 - Cabelo
+  //           2 - Barba
+  //           3 - Combos
+  //           4 - Planos
+  //           5 - Falar com um atendente
+  //       `,
+  // );
 
   // Fluxo Cabelo
   // manager.addDocument("pt", "1", "fluxo.cabelo");

@@ -1,6 +1,6 @@
 
 
-export function fluxoAgendamento(
+export function fluxoCabelo(
     usuario,
     mensagem
 ) {
