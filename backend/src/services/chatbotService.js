@@ -1,9 +1,9 @@
-import manager from "../bot/manager";
-import { fluxoAgendamento } from "../flows/fluxoAgendamento";
-import { fluxoBarba } from "../flows/fluxoBarba";
-import { fluxoCabelo } from "../flows/fluxoCabelo";
-import { fluxoPrincipal } from "../flows/fluxoPrincipal";
-import { getUsuario } from "../state/userState";
+import manager from "../bot/manager.js";
+import { fluxoAgendamento } from "../flows/fluxoAgendamento.js";
+import { fluxoBarba } from "../flows/fluxoBarba.js";
+import { fluxoCabelo } from "../flows/fluxoCabelo.js";
+import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
+import { getUsuario } from "../state/userState.js";
 
 
 
@@ -23,16 +23,7 @@ export async function responder(
         if (response.intent === "saudacao") {
             usuario.etapa = "menu.principal";
 
-            return `
-                Olá! Seja bem-vindo a Barbearia ACDKS!\n
-                Explore os nossos seriços e marque um horário conosco.\n
-                Para começar, escolha o que você pretende fazer em nossa barbearia: \n
-                1 - Cabelo\n
-                2 - Barba\n
-                3 - Combos\n
-                4 - Planos\n
-                5 - Falar com um atendente\n
-            `
+            return `Olá! Seja bem-vindo a Barbearia ACDKS!\nExplore os nossos serviços e marque um horário conosco.\nPara começar, escolha o que você pretende fazer em nossa barbearia:\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente`;
         }
     }
 
@@ -41,14 +32,18 @@ export async function responder(
         case "menu.principal":
             return fluxoPrincipal(usuario, mensagem);
         
-        case "menu.cabelo":
+        case "fluxo.cabelo":
             return fluxoCabelo(usuario, mensagem);
 
-        case "menu.barba":
+        case "fluxo.barba":
             return fluxoBarba(usuario, mensagem);
 
         case "pedir.nome":
-            case "pedir.telefone":
-                return fluxoAgendamento(usuario, mensagem);
+        case "pedir.telefone":
+        case "confirmacao":
+            return await fluxoAgendamento(usuario, mensagem);
+
+        default:
+            return "Desculpe, não entendi sua resposta. Pode tentar novamente ou escolher uma das opções numeradas?";
     }
 }
