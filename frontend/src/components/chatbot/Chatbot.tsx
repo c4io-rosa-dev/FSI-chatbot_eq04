@@ -21,6 +21,7 @@ export function Chatbot() {
         flexDirection: 'column',
         boxShadow: '0 24px 80px rgba(21,17,13,0.4)',
         border: '1px solid var(--ink)',
+        overflow: 'hidden',
       }
     : {
         position: 'fixed',
@@ -35,6 +36,7 @@ export function Chatbot() {
         boxShadow: '0 24px 60px rgba(21,17,13,0.32), 0 4px 12px rgba(21,17,13,0.18)',
         border: '1px solid var(--ink)',
         animation: 'pop-in .25s ease',
+        overflow: 'hidden',
       };
 
   return (
