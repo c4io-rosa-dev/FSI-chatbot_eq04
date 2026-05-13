@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(authRoutes);
+// app.use(authRoutes);
 app.use("/chat", chatRouter);
 app.get('/health', (_, res) => res.json({ok: true}));
 

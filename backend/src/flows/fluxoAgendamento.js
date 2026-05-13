@@ -1,6 +1,7 @@
+import { criarAgendamento } from "../services/agendamentoService";
 
 
-export function fluxoAgendamento(
+export async function fluxoAgendamento(
     usuario,
     mensagem
 ) {
@@ -17,11 +18,13 @@ export function fluxoAgendamento(
         usuario.telefone = mensagem;
         usuario.etapa = "confirmacao";
 
+        const agendamento = await criarAgendamento(usuario);
+
         return `
             Agendado!\n
-            Nome: ${usuario.nome}\n
-            Serviço: ${usuario.servico}\n
-            Telefone: ${usuario.telefone}\n
+            Nome: ${agendamento.nome}\n
+            Serviço: ${agendamento.servico}\n
+            Telefone: ${agendamento.telefone}\n
         `
     }
 }

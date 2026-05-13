@@ -36,9 +36,9 @@ export function fluxoPrincipal(
                 Certo! Aqui estão os combos disponíveis para escolher. Os preços variam de acordo com o tipo de procedimento: \n
                 1 - Combo básico: cabelo + barba - R$ 75,00 a R$ 85,00\n
                 2 - Combo básico: barba + sobrancelha - R$ 45,00 a R$ 65,00\n
-                3 - Combo básico: cabelo + hidratação - R$ 65,00\ a R$ 75,00n
-                4 - Combo intermediário: cabelo + barba + sobrancelha - R$ 75,00 a R$ 85,00\n
-                5 - Combo básico: cabelo + lavagem + finalização - R$ 70,00 a R$ 80,00\n
+                3 - Combo básico: cabelo + hidratação - R$ 65,00\ a R$ 75,00\n
+                4 - Combo básico: cabelo + lavagem + finalização - R$ 70,00 a R$ 80,00\n
+                5 - Combo intermediário: cabelo + barba + sobrancelha - R$ 75,00 a R$ 85,00\n
                 6 - Combo completo: cabelo + barba + hidratação + toalha quente - R$ 110,00 a R$ 130,00\n
                 7 - Combo completo: cabelo + barba + sobrancelha + hidratação + lavagem - R$ 125,00 a R$ 150,00\n
                 8 - Combo completo: barba + limpeza de pele + sobrancelha - R$ 75,00 a R$ 85,00\n
