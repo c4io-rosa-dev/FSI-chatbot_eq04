@@ -1,4 +1,4 @@
-import { criarAgendamento } from "../services/agendamentoService";
+import { criarAgendamento } from "../services/agendamentoService.js";
 
 
 export async function fluxoAgendamento(
@@ -9,9 +9,7 @@ export async function fluxoAgendamento(
         usuario.nome = mensagem;
         usuario.etapa = "pedir.telefone";
 
-        return `
-            Digite seu telefone: 
-        `
+        return `Digite seu telefone (apenas números):`;
     }
 
     if (usuario.etapa === "pedir.telefone") {
@@ -20,11 +18,8 @@ export async function fluxoAgendamento(
 
         const agendamento = await criarAgendamento(usuario);
 
-        return `
-            Agendado!\n
-            Nome: ${agendamento.nome}\n
-            Serviço: ${agendamento.servico}\n
-            Telefone: ${agendamento.telefone}\n
-        `
+        return `Agendado!\nNome: ${agendamento.nome}\nServiço: ${agendamento.servico}\nTelefone: ${agendamento.telefone}\n\nObrigado! Você será contatado em breve.`;
     }
+
+    return "Por favor, forneça as informações solicitadas.";
 }
