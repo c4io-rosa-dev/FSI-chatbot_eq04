@@ -1,51 +1,64 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { connection } from '../../database.js';
+import fs from 'fs/promises';
 
 const router = express.Router();
+const dataPath = new URL('../../infra/data.json', import.meta.url);
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
+    const { senha, email } = req.body;
 
-    const { nome, senha } = req.body;
+    if (!email || !senha) {
+        return res.status(400).json({
+            erro: 'Email e senha sao obrigatorios'
+        });
+    }
 
-    connection.query(
-        'SELECT * FROM admin WHERE nome_admin = ?',
-        [nome],
-        (err, results) => {
+    const usuarios = await lerDados();
 
-            if (err) {
-                return res.status(500).json(err);
-            }
+    if (!usuarios) {
+        return res.status(500).json({
+            erro: 'Erro ao ler usuarios'
+        });
+    }
 
-            if (results.length === 0) {
-                return res.status(401).json({
-                    erro: 'Usuário não encontrado'
-                });
-            }
+    const usuario = usuarios.find((usu) => usu.email === email && usu.senha === senha);
 
-            const admin = results[0];
+    if (!usuario) {
+        return res.status(401).json({
+            erro: 'Usuario ou senha invalidos'
+        });
+    }
 
-            if (admin.senha_admin !== senha) {
-                return res.status(401).json({
-                    erro: 'Senha inválida'
-                });
-            }
-
-            const token = jwt.sign(
-                {
-                    id: admin.id_admin
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: '1h'
-                }
-            );
-
-            res.json({
-                token
-            });
+    const token = jwt.sign(
+        {
+            id: usuario.id,
+            email: usuario.email,
+            nome: usuario.name,
+            role: usuario.role
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: '1h'
         }
     );
+
+    return res.status(200).json({
+        nome: usuario.name,
+        email: usuario.email,
+        role: usuario.role,
+        token
+    });
 });
+
+async function lerDados() {
+    try {
+        const data = await fs.readFile(dataPath, 'utf-8');
+        return JSON.parse(data);
+    } catch (err) {
+        console.error('Erro ao ler dados:', err);
+        return null;
+    }
+}
 
 export default router;

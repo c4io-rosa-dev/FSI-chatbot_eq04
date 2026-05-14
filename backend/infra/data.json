@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "role": "admin",
+        "email": "admin@email.com",
+        "senha": "admin123"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "role": "user",
+        "email": "user@email.com",
+        "senha": "admin123"
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "role": "user",
+        "email": "admin@email.com",
+        "senha": "admin123"
+    },
+    {
+        "id": 4,
+        "name": "Bob Brown",
+        "role": "user",
+        "email": "admin@email.com",
+        "senha": "admin123"
+    },
+    {
+        "id": 5,
+        "name": "Charlie Davis",
+        "role": "user",
+        "email": "admin@email.com",
+        "senha": "admin123"
+    }     
+]
