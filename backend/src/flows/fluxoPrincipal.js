@@ -31,5 +31,5 @@ export function fluxoPrincipal(
             return `Certo! Estamos redirecionando para um atendente. Para facilitar, escolha o motivo:\n1 - Dúvidas\n2 - Problemas com agendamento\n3 - Reclamação\n4 - Outro`;
     }
 
-    return "Escolha uma opção válida (1, 2, 3, 4 ou 5)";
+    return "Escolha uma opção válida (1, 2, 3, 4 ou 5).";
 }

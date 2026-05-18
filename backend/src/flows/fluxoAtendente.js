@@ -1,5 +1,5 @@
-import { fluxoPrincipal } from "./fluxoPrincipal";
-import { isMenuRequest } from "./fluxoVoltarMenu";
+import { fluxoPrincipal } from "./fluxoPrincipal.js";
+import { isMenuRequest } from "./fluxoVoltarMenu.js";
 
 export function fluxoAtendente(usuario, mensagem) {
     if (isMenuRequest(mensagem)) {

@@ -1,4 +1,4 @@
-import { fluxoPrincipal } from "./fluxoPrincipal";
+import { fluxoPrincipal } from "./fluxoPrincipal.js";
 
 export function isMenuRequest(mensagem) {
     if (!mensagem) return false;

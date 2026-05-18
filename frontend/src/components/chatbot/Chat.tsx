@@ -179,6 +179,7 @@ export default function Chat() {
           <input
             type="text"
             value={texto}
+            autoFocus
             onChange={(e) => setTexto(e.target.value)}
             placeholder="Digite sua mensagem..."
             disabled={carregando}

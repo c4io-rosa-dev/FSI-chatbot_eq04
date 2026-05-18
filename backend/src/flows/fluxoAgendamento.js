@@ -9,7 +9,7 @@ export async function fluxoAgendamento(
         usuario.nome = mensagem;
         usuario.etapa = "pedir.telefone";
 
-        return `Digite seu telefone (apenas números):`;
+        return `Digite seu telefone (apenas números):\n(Digite 'menu' para voltar ao menu principal)`;
     }
 
     if (usuario.etapa === "pedir.telefone") {
@@ -21,5 +21,5 @@ export async function fluxoAgendamento(
         return `Agendado!\nNome: ${agendamento.nome}\nServiço: ${agendamento.servico}\nTelefone: ${agendamento.telefone}\n\nObrigado! Você será contatado em breve.`;
     }
 
-    return "Por favor, forneça as informações solicitadas.";
+    return "Por favor, forneça as informações solicitadas.\n(Digite 'menu' para voltar ao menu principal)";
 }
