@@ -1,3 +1,4 @@
+import { responder } from "../services/chatbotService.js";
 import { fluxoPrincipal } from "./fluxoPrincipal.js";
 import { isMenuRequest } from "./fluxoVoltarMenu.js";
 
