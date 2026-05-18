@@ -2,7 +2,10 @@ import manager from "../bot/manager.js";
 import { fluxoAgendamento } from "../flows/fluxoAgendamento.js";
 import { fluxoBarba } from "../flows/fluxoBarba.js";
 import { fluxoCabelo } from "../flows/fluxoCabelo.js";
+import { fluxoCombos } from "../flows/fluxoCombos.js";
+import { fluxoPlanos } from "../flows/fluxoPlanos.js";
 import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
+import { fluxoAtendente } from "../flows/fluxoAtendente.js";
 import { getUsuario } from "../state/userState.js";
 
 
@@ -37,6 +40,15 @@ export async function responder(
 
         case "fluxo.barba":
             return fluxoBarba(usuario, mensagem);
+        
+        case "fluxo.combo":
+            return fluxoCombos(usuario, mensagem);
+
+        case "fluxo.planos":
+            return fluxoPlanos(usuario, mensagem);
+
+        case "fluxo.atendente":
+            return fluxoAtendente(usuario, mensagem);
 
         case "pedir.nome":
         case "pedir.telefone":
