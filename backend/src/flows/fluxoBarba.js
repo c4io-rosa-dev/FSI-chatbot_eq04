@@ -1,4 +1,5 @@
 import { responder } from "../services/chatbotService.js";
+import { adicionarServico } from "../services/adicionarServicoService.js";
 import { fluxoPrincipal } from "./fluxoPrincipal.js";
 import { isMenuRequest } from "./fluxoVoltarMenu.js";
 
@@ -13,17 +14,36 @@ export function fluxoBarba(
     switch(mensagem) {
         
         case "1": 
-            usuario.servico = "Corte Simples Máquina";
+            
+            adicionarServico(
+                usuario,
+                "Corte Simples Máquina",
+                20
+            );
             usuario.etapa = "pedir.nome";
 
             return `Boa escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            
         case "2":
-            usuario.servico = "Corte Simples Navalha";
+            
+             adicionarServico(
+                usuario,
+                "Corte Simples Navalha",
+                25
+            );
+
             usuario.etapa = "pedir.nome";
 
             return `Ótima escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            
         case "3":
-            usuario.servico = "Micropigmentação";
+
+            adicionarServico(
+                usuario,
+                "Micropigmentação",
+                20
+            );
+            
             usuario.etapa = "pedir.nome";
 
             return `Certa escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
