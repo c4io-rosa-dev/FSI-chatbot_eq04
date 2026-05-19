@@ -21,6 +21,6 @@ export function fluxoAtendente(usuario, mensagem) {
             usuario.etapa = "menu.principal";
             return `Ok, vou encaminhar sua mensagem para um atendente.\nSe quiser, digite "menu" para voltar ao menu principal.`;
         default:
-            return `Escolha um motivo válido para o atendente:\n1 - Dúvidas\n2 - Problemas com agendamento\n3 - Reclamação\n4 - Outro\n\nSe quiser voltar ao menu principal, digite "menu".`;
+            return `Escolha um motivo válido para o atendente:\n1 - Dúvidas\n2 - Problemas com agendamento\n3 - Reclamação\n4 - Outro\n\nSe quiser voltar ao menu principal, digite "menu".\nSe quiser encerrar o atendimento, digite 'sair'.`;
     }
 }
