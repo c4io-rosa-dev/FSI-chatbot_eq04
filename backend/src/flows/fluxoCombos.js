@@ -84,7 +84,7 @@ export function fluxoCombos(usuario, mensagem) {
         case "9":
             return `Nossos combos combinam serviços com preço especial e atendimento completo.\nOs valores são estimados e podem variar conforme a necessidade do serviço.\nPara agendar, escolha uma das opções listadas e informe seu nome.\n\n(Digite 'menu' para voltar ao menu principal)`;
         default:
-            return `Escolha uma opção válida (1 a 8) para os combos ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).`;
+            return `Escolha uma opção válida (1 a 8) para os combos ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento).`;
     }   
 }
 
