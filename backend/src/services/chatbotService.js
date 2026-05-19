@@ -10,13 +10,26 @@ import { getUsuario } from "../state/userState.js";
 
 
 
-
 export async function responder(
     userId,
     mensagem
 ) {
     const usuario = getUsuario(userId);
 
+
+    // colocando comando global para encerrar atendimento
+    if (
+        mensagem.toLowerCase() === "sair"
+    ) {
+
+        usuario.etapa = "inicio";
+        usuario.nome = null;
+        usuario.telefone = null;
+        usuario.servicos = [];
+
+        return `Atendimento encerrado com sucesso!\nQuando quiser iniciar novamente, envie "oi".`;
+    }
+    
     if (usuario.etapa === "inicio") {
         const response = await manager.process(
             "pt",
@@ -25,6 +38,9 @@ export async function responder(
 
         if (response.intent === "saudacao") {
             usuario.etapa = "menu.principal";
+
+            // inicia atendimento com lista de serviços zerada
+            usuario.servicos = [];
 
             return `Olá! Seja bem-vindo a Barbearia ACDKS!\nExplore os nossos serviços e marque um horário conosco.\nPara começar, escolha o que você pretende fazer em nossa barbearia:\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente`;
         }
