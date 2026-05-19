@@ -41,6 +41,6 @@ export function fluxoPlanos(usuario, mensagem) {
             return `Os planos oferecem serviços mensais com facilidades e prioridade no agendamento.\n1 - Cabelo + barba - R$ 229/mês\n2 - Cabelo - R$ 149/mês\n3 - Barba - R$ 119/mês\nPara contratar, escolha um dos planos acima.\n\n(Digite 'menu' para voltar ao menu principal)`;
        
         default:
-            return `Escolha uma opção válida (1 a 4) para os planos ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).`;
+            return `Escolha uma opção válida (1 a 4) para os planos ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento)`;
     }
 }
