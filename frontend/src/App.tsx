@@ -7,6 +7,8 @@ import ServicosPage from '@/pages/ServicosPage';
 import PlanosPage from '@/pages/PlanosPage';
 import ContatoPage from '@/pages/ContatoPage';
 import NotFound from '@/pages/NotFound';
+import AdminLogin from '@/pages/admin/Login';
+import ChatAdmin from '@/pages/admin/ChatAdmin';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
           <Route path="/contato" element={<ContatoPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/chat" element={<ChatAdmin />} />
       </Routes>
     </ChatProvider>
   );

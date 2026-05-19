@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Icon } from '@/components/Icon';
 import { useChat } from '@/context/ChatContext';
-import { login } from '@/utils/login';
 
 const LINKS: Array<[string, string]> = [
   ['Serviços', '/servicos'],
@@ -14,24 +13,11 @@ const LINKS: Array<[string, string]> = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const { openChat } = useChat();
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    // const nome = prompt("Nome");
-    // const senha = prompt("Senha");
-
-    // if (!nome || !senha) {
-    //   alert("Login incorreto!");
-    //   return;
-    // }
-
-    // const entrar = await login(nome, senha);
-
-    // if (entrar) {
-      
-    // }
-
-    alert('oi');
-  }
+  const handleLogin = () => {
+    navigate('/admin/login');
+  };
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60);
