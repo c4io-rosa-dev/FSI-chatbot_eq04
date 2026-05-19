@@ -1,3 +1,4 @@
+import { calcularTotal } from "../services/adicionarServicoService.js";
 import { criarAgendamento } from "../services/agendamentoService.js";
 
 
@@ -17,8 +18,6 @@ export async function fluxoAgendamento(
         usuario.etapa = "confirmacao";
 
         const agendamento = await criarAgendamento(usuario);
-
-         const agendamento = await criarAgendamento(usuario);
 
         // para listar os serviços escolhidos
         const listaServicos = usuario.servicos

@@ -20,9 +20,9 @@ export function fluxoBarba(
                 "Corte Simples Máquina",
                 20
             );
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Boa escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
             
         case "2":
             
@@ -32,9 +32,9 @@ export function fluxoBarba(
                 25
             );
 
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Ótima escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
             
         case "3":
 
@@ -44,9 +44,9 @@ export function fluxoBarba(
                 20
             );
             
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Certa escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Certa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
         case "4":
             return `A duração média dos cortes é de 50 min.\nNossos profissionais são:\nGuilherme Dino\nCaio Rosa\nSamuel Goes\nTodos com mais de 5 anos de experiência em todos os tipos de corte. Nossos produtos são da maior qualidade, como máquinas da Wahl e Rovra.\n\n(Digite 'menu' para voltar ao menu principal)`;
         default:

@@ -19,9 +19,9 @@ export function fluxoCabelo(
                 "Corte Simples",
                 35
             );
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Ótima escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
        
         case "2":
             adicionarServico(
@@ -29,9 +29,9 @@ export function fluxoCabelo(
                 "Corte com acabamento",
                 45
             );
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Boa escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
        
         case "3":
             adicionarServico(
@@ -39,9 +39,9 @@ export function fluxoCabelo(
                 "Corte Degradê",
                 50
             );
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Escolha incrível!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Escolha incrível!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
        
         case "4":
             adicionarServico(
@@ -49,9 +49,9 @@ export function fluxoCabelo(
                 "Corte Social",
                 40
             );
-            usuario.etapa = "pedir.nome";
+            usuario.etapa = "confirmar.servico";
 
-            return `Ótima escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
         
         case "5":
             return `A duração média dos cortes é de 50 min.\nNossos profissionais são:\nGuilherme Dino\nCaio Rosa\nSamuel Goes\nTodos com mais de 5 anos de experiência em todos os tipos de corte. Nossos produtos são da maior qualidade, como máquinas da Wahl e Rovra.\n\n(Digite 'menu' para voltar ao menu principal)`;

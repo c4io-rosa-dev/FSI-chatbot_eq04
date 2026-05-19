@@ -66,6 +66,18 @@ export async function responder(
         case "fluxo.atendente":
             return fluxoAtendente(usuario, mensagem);
 
+        case "confirmar.servico":
+            const respostaMenu = mensagem.toLowerCase().trim();
+            if (respostaMenu === "sim" || respostaMenu === "s") {
+                usuario.etapa = "menu.principal";
+                return responder(usuario, "oi");
+            } else if (respostaMenu === "não" || respostaMenu === "nao" || respostaMenu === "n") {
+                usuario.etapa = "pedir.nome";
+                return "Perfeito! Agora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)";
+            } else {
+                return "Por favor, digite 'sim' para adicionar mais serviços ou 'não' para finalizar o agendamento.";
+            }
+
         case "pedir.nome":
         case "pedir.telefone":
         case "confirmacao":

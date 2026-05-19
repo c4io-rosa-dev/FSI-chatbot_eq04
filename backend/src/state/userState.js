@@ -8,6 +8,7 @@ export function getUsuario(id) {
         usuarios[id] = {
             etapa: "inicio",
             servico: null,
+            servicos: [],
             nome: null,
             telefone: null
         };

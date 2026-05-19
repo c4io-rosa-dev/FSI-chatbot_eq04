@@ -16,8 +16,8 @@ export function fluxoPlanos(usuario, mensagem) {
                 "Plano Cabelo + barba",
                 229
             );
-            usuario.etapa = "pedir.nome";
-            return `Ótima opção!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            usuario.etapa = "confirmar.servico";
+            return `Ótima opção!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
             
         case "2":
             adicionarServico(
@@ -25,8 +25,8 @@ export function fluxoPlanos(usuario, mensagem) {
                 "Plano Cabelo",
                 149
             );
-            usuario.etapa = "pedir.nome";
-            return `Excelente escolha!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            usuario.etapa = "confirmar.servico";
+            return `Excelente escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
             
         case "3":
             adicionarServico(
@@ -34,8 +34,8 @@ export function fluxoPlanos(usuario, mensagem) {
                 "Plano Barba",
                 119
             );
-            usuario.etapa = "pedir.nome";
-            return `Perfeito!\nAgora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            usuario.etapa = "confirmar.servico";
+            return `Perfeito!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
         
         case "4":
             return `Os planos oferecem serviços mensais com facilidades e prioridade no agendamento.\n1 - Cabelo + barba - R$ 229/mês\n2 - Cabelo - R$ 149/mês\n3 - Barba - R$ 119/mês\nPara contratar, escolha um dos planos acima.\n\n(Digite 'menu' para voltar ao menu principal)`;
