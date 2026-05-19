@@ -21,7 +21,3 @@ export function calcularTotal(servicos) {
         0
     );
 }
-
-export function limparServicos(usuario) {
-    usuario.servicos = [];
-}
