@@ -23,7 +23,7 @@ export function fluxoPrincipal(
         case "4":
             usuario.etapa = "fluxo.planos";
 
-            return `Que tal pagar uma vez por mês e ter serviços ilimitados? Conheça nossos planos:\n1 - Cabelo + barba - R$ 229,99\n2 - Cabelo - R$ 149,99\n3 - Barba - R$ 119,99\n4 - Mais informações\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Que tal pagar uma vez por mês e ter serviços ilimitados? Conheça nossos planos:\n1 - Cabelo + barba - R$ 229\n2 - Cabelo - R$ 149\n3 - Barba - R$ 119\n4 - Mais informações\n\n(Digite 'menu' para voltar ao menu principal)`;
         
         case "5":
             usuario.etapa = "fluxo.atendente";
