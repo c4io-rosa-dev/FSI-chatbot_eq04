@@ -1,12 +1,8 @@
 import { ChatbotHeaderProps } from "@/interfaces/IChatbotHeader";
 import { Icon } from "../Icon";
-import { useState } from "react";
-
-
 
 export default function ChatbotHeader({ fullscreen, onToggleFullscreen, onClose }: ChatbotHeaderProps) {
-
-  const [isOnline, setIsOnline] = useState(true);
+  const isOnline = true;
   return (
     <div
       style={{

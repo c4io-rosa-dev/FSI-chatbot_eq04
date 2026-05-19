@@ -1,16 +1,14 @@
-import { useState, type CSSProperties } from 'react';
-import { Icon } from '@/components/Icon';
+import { type CSSProperties } from 'react';
 import { useChat } from '@/context/ChatContext';
 import ChatbotHeader from './ChatbotHeader';
 import MaintenancePanel from './MaintenancePanel';
 import Chat from './Chat';
 
+const CHAT_ATIVO = true;
+
 export function Chatbot() {
   const { open, fullscreen, closeChat, toggleFullscreen } = useChat();
-  const [isActive, setIsActive] = useState(true);
   if (!open) return null;
-
-  // Backend (Python) ainda não conectado — UI fica em modo manutenção.
   const panelStyle: CSSProperties = fullscreen
     ? {
         position: 'fixed',
@@ -42,10 +40,7 @@ export function Chatbot() {
   return (
     <div style={panelStyle}>
       <ChatbotHeader fullscreen={fullscreen} onToggleFullscreen={toggleFullscreen} onClose={closeChat} />
-      {isActive ? 
-        <Chat/> :
-        <MaintenancePanel />
-      }
+      {CHAT_ATIVO ? <Chat /> : <MaintenancePanel />}
     </div>
   );
 }
