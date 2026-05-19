@@ -18,7 +18,7 @@ export function fluxoPrincipal(
 
         case "3":
             usuario.etapa = "fluxo.combos";
-            return `Certo! Aqui estão os combos disponíveis:\n1 - Combo básico: cabelo + barba - R$ 75,00 a R$ 85,00\n2 - Combo básico: barba + sobrancelha - R$ 45,00 a R$ 65,00\n3 - Combo básico: cabelo + hidratação - R$ 65,00 a R$ 75,00\n5 - Combo intermediário: cabelo + barba + sobrancelha - R$ 75,00 a R$ 85,00\n6 - Combo completo: cabelo + barba + hidratação + toalha quente - R$ 110,00 a R$ 130,00\n7 - Combo completo: cabelo + barba + sobrancelha + hidratação + lavagem - R$ 125,00 a R$ 150,00\n8 - Combo completo: barba + limpeza de pele + sobrancelha - R$ 75,00 a R$ 85,00\n9 - Mais informações\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Certo! Aqui estão os combos disponíveis:\n1 - Combo básico: cabelo + barba - R$ 85,00\n2 - Combo básico: barba + sobrancelha - R$ 65,00\n3 - Combo básico: cabelo + hidratação - R$ 75,00\n4 - Combo intermediário: cabelo + barba + sobrancelha - R$ 85,00\n5 - Combo intermediário: cabelo + lavagem + finalização - R$ 80,00\n6 - Combo completo: cabelo + barba + hidratação + toalha quente - R$ 130,00\n7 - Combo completo: cabelo + barba + sobrancelha + hidratação + lavagem - R$ 150,00\n8 - Combo completo: barba + limpeza de pele + sobrancelha - R$ 85,00\n9 - Mais informações\n\n(Digite 'menu' para voltar ao menu principal)`;
 
         case "4":
             usuario.etapa = "fluxo.planos";
