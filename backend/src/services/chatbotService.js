@@ -1,24 +1,17 @@
 import manager from "../bot/manager.js";
 import { fluxoAgendamento } from "../flows/fluxoAgendamento.js";
+import { fluxoAtendente } from "../flows/fluxoAtendente.js";
 import { fluxoBarba } from "../flows/fluxoBarba.js";
 import { fluxoCabelo } from "../flows/fluxoCabelo.js";
 import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
 import { getUsuario } from "../state/userState.js";
 
 
-
-
-export async function responder(
-    userId,
-    mensagem
-) {
+export async function responder(userId, mensagem) {
     const usuario = getUsuario(userId);
 
     if (usuario.etapa === "inicio") {
-        const response = await manager.process(
-            "pt",
-            mensagem
-        );
+        const response = await manager.process("pt", mensagem);
 
         if (response.intent === "saudacao") {
             usuario.etapa = "menu.principal";
@@ -27,16 +20,28 @@ export async function responder(
         }
     }
 
-    switch(usuario.etapa) {
-        
+    switch (usuario.etapa) {
         case "menu.principal":
             return fluxoPrincipal(usuario, mensagem);
-        
+
         case "fluxo.cabelo":
             return fluxoCabelo(usuario, mensagem);
 
         case "fluxo.barba":
             return fluxoBarba(usuario, mensagem);
+
+        case "fluxo.atendente":
+        case "atendente.pergunta_continuar":
+            return fluxoAtendente(usuario, mensagem);
+
+        case "atendente.fila":
+            return "Você já está na fila aguardando um atendente. Aguarde um instante.";
+
+        case "atendente.ativo":
+            return "Você já está conversando com um atendente. Use o painel de mensagens para continuar.";
+
+        case "encerrado":
+            return "Atendimento encerrado. Para iniciar uma nova conversa, recarregue a página.";
 
         case "pedir.nome":
         case "pedir.telefone":

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { responder } from '../services/chatbotService.js';
+import { getUsuario } from '../state/userState.js';
 
 
 const router = Router();
@@ -17,9 +18,11 @@ router.post('/', async (req, res) => {
 
     try {
         const resposta = await responder(userId, message);
+        const usuario = getUsuario(userId);
 
         res.json({
-            response: resposta
+            response: resposta,
+            etapa: usuario.etapa,
         });
     } catch (error) {
         console.error('Erro ao processar mensagem:', error);
