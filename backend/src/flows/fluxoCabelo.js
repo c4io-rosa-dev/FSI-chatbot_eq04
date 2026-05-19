@@ -56,6 +56,6 @@ export function fluxoCabelo(
         case "5":
             return `A duração média dos cortes é de 50 min.\nNossos profissionais são:\nGuilherme Dino\nCaio Rosa\nSamuel Goes\nTodos com mais de 5 anos de experiência em todos os tipos de corte. Nossos produtos são da maior qualidade, como máquinas da Wahl e Rovra.\n\n(Digite 'menu' para voltar ao menu principal)`;
         default:
-            return `Escolha uma opção válida (1 a 5) para os cortes ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).`;
+            return `Escolha uma opção válida (1 a 5) para os cortes ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento).`;
     }
 }
