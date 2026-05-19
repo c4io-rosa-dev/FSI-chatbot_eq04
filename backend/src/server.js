@@ -2,45 +2,28 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
-import authRoutes from './routes/authRoutes.js';
-import chatRouter from './routes/chat.js'
+import chatRouter from './routes/chat.js';
+import { registrarSocketsAtendimento } from './sockets/atendimentoSocket.js';
 
 const PORT = process.env.PORT || 3000;
-
+const HOST = process.env.HOST || '0.0.0.0';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-// app.use(authRoutes);
-app.use("/chat", chatRouter);
-app.get('/health', (_, res) => res.json({ok: true}));
-
+app.use('/chat', chatRouter);
+app.get('/health', (_, res) => res.json({ ok: true }));
 
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
 io.on('connection', (socket) => {
-    console.log('Conectado: ', socket.id);
-
-    //Entrar em uma room
-    socket.on('chat:join', (room) => {
-        socket.join(room);
-        socket.to(room).emit('chat:sys', `${socket.id} entrou em ${room}`);
-    });
-
-    //Mensagem
-    socket.on('chat:msg', ({ room, texto }) => {
-        io.to(room).emit('chat:msg', { de: socket.id, texto, ts: Date.now() });
-    });
-
-    //ping/pong (conceito de ack simples)
-    socket.on('ping:client', (msg, ack) => {
-        if (ack) ack({ ok: true, now: Date.now(), echo: msg });
-    });
-
+    console.log('[ws] conectado:', socket.id);
     socket.on('disconnect', (reason) => {
-        console.log('disconnect:', socket.id, reason);
-    })
+        console.log('[ws] desconectado:', socket.id, reason);
+    });
 });
 
-server.listen(PORT, () => console.log('HTTPS+WS on: ', PORT));
+registrarSocketsAtendimento(io);
+
+server.listen(PORT, HOST, () => console.log(`HTTP+WS on http://${HOST}:${PORT}`));
