@@ -1,3 +1,4 @@
+import authRoutes from './routes/authRoutes.js';
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/chat', chatRouter);
+app.use('/auth', authRoutes);
 app.get('/health', (_, res) => res.json({ ok: true }));
 
 const server = http.createServer(app);

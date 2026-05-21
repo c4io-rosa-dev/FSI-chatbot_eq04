@@ -22,6 +22,7 @@ import {
     salvarMensagem,
 } from "../repositories/atendimentoRepository.js";
 import { getUsuario } from "../state/userState.js";
+import jwt from 'jsonwebtoken';
 
 const clientesPorUserId = new Map();
 
@@ -160,14 +161,16 @@ function registrarNamespaceAdmin(io) {
     const nsp = io.of("/admin");
 
     nsp.use((socket, next) => {
-        const nome = socket.handshake.auth?.nome;
-        if (typeof nome !== "string" || !nome.trim()) {
-            return next(new Error("Nome do atendente é obrigatório"));
+        const token = socket.handshake.auth?.token;
+        if (!token) return next(new Error('Token ausente'));
+        try {
+            const payload = jwt.verify(token, process.env.JWT_SECRET);
+            socket.data.atendente = { id: payload.id, nome: payload.nome };
+            next();
+        } catch {
+            next(new Error('Token inválido ou expirado'));
         }
-
-        socket.data.atendente = { nome: nome.trim() };
-        next();
-    });
+    })
 
     nsp.on("connection", (socket) => {
         socket.emit("admin:fila:atual", listarFila());
