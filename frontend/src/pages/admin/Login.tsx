@@ -5,18 +5,22 @@ const STORAGE_KEY = "atendente_nome";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
-  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [erro, setErro] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const valor = nome.trim();
-    if (!valor) {
-      setErro("Informe um nome para entrar.");
-      return;
-    }
-    localStorage.setItem(STORAGE_KEY, valor);
-    navigate("/admin/chat", { replace: true });
+    const resp = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha }),
+    });
+    if (!resp.ok) { setErro('Usuário ou senha inválidos'); return; }
+    const { token, nome: nomeAdmin } = await resp.json();
+    localStorage.setItem('atendente_token', token);
+    localStorage.setItem('atendente_nome', nomeAdmin);
+    navigate('/admin/chat', { replace: true })
   };
 
   return (
@@ -91,23 +95,21 @@ export default function AdminLogin() {
               Como deseja ser identificado
             </span>
             <input
-              type="text"
-              value={nome}
-              onChange={(e) => {
-                setNome(e.target.value);
-                if (erro) setErro(null);
-              }}
-              placeholder="ex.: Caio"
+              type="email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); if (erro) setErro(null); }}
+              placeholder="admin@email.com"
               autoFocus
-              style={{
-                padding: "12px 14px",
-                border: "1px solid var(--copper)",
-                background: "var(--cream)",
-                fontSize: 15,
-                color: "var(--ink)",
-                outline: "none",
-              }}
+              style={{ padding: "12px 14px", border: "1px solid var(--copper)", background: "var(--cream)", fontSize: 15, color: "var(--ink)", outline: "none" }}
             />
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => { setSenha(e.target.value); if (erro) setErro(null); }}
+              placeholder="Senha"
+              style={{ padding: "12px 14px", border: "1px solid var(--copper)", background: "var(--cream)", fontSize: 15, color: "var(--ink)", outline: "none" }}
+            />
+
           </label>
 
           {erro && (

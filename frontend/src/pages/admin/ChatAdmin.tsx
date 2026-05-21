@@ -40,7 +40,6 @@ function formatarTempoEspera(criadoEm: number, agora: number) {
 export default function ChatAdmin() {
   const navigate = useNavigate();
   const [nome] = useState<string>(() => localStorage.getItem(STORAGE_KEY) ?? "");
-
   const socketRef = useRef<AdminSocket | null>(null);
   const [conectado, setConectado] = useState(false);
   const [erroConexao, setErroConexao] = useState<string | null>(null);
@@ -55,13 +54,14 @@ export default function ChatAdmin() {
   const digitandoTrueEnviadoRef = useRef(false);
   const digitandoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const token = localStorage.getItem('atendente_token');
 
   // Redireciona pra login se não houver nome
   useEffect(() => {
-    if (!nome) {
+    if (!nome || !token) {
       navigate("/admin/login", { replace: true });
     }
-  }, [nome, navigate]);
+  }, [nome, token, navigate]);
 
   // Atualiza o "agora" a cada 5s pra recalcular tempo de espera
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function ChatAdmin() {
     if (!nome) return;
 
     const socket: AdminSocket = io(`${API_URL}/admin`, {
-      auth: { nome },
+      auth: { token },
       transports: ["websocket", "polling"],
     });
     socketRef.current = socket;
@@ -92,6 +92,7 @@ export default function ChatAdmin() {
     socket.on("connect_error", (err) => {
       setConectado(false);
       setErroConexao(err.message);
+      if (err.message.includes('Token')) navigate('/admin/login' , { replace: true })
     });
 
     socket.on("disconnect", () => {
@@ -218,6 +219,7 @@ export default function ChatAdmin() {
     localStorage.removeItem(STORAGE_KEY);
     socketRef.current?.disconnect();
     navigate("/admin/login", { replace: true });
+    localStorage.removeItem('atendente_token');
   }, [navigate]);
 
   const filaOrdenada = useMemo(
