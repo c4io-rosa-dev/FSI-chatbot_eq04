@@ -44,13 +44,15 @@ async function encerrarSessaoCompleta({ io, roomId, encerradoPor }) {
     const sessao = encerrarSessao(roomId);
     if (!sessao) return;
 
-    try {
-        await encerrarAtendimento({
-            atendimentoId: sessao.atendimentoId,
-            encerradoPor,
-        });
-    } catch (err) {
-        console.error("[atendimento] erro ao encerrar no banco:", err);
+    if (sessao.atendimentoId != null) {
+        try {
+            await encerrarAtendimento({
+                atendimentoId: sessao.atendimentoId,
+                encerradoPor,
+            });
+        } catch (err) {
+            console.error("[atendimento] erro ao encerrar no banco:", err);
+        }
     }
 
     const usuario = getUsuario(sessao.userId);
@@ -107,14 +109,16 @@ function registrarNamespaceCliente(io) {
             nsp.to(roomId).emit("support:msg", payload);
             io.of("/admin").to(roomId).emit("support:msg", payload);
 
-            try {
-                await salvarMensagem({
-                    atendimentoId: sessao.atendimentoId,
-                    autor: "cliente",
-                    texto,
-                });
-            } catch (err) {
-                console.error("[atendimento] erro ao salvar mensagem do cliente:", err);
+            if (sessao.atendimentoId != null) {
+                try {
+                    await salvarMensagem({
+                        atendimentoId: sessao.atendimentoId,
+                        autor: "cliente",
+                        texto,
+                    });
+                } catch (err) {
+                    console.error("[atendimento] erro ao salvar mensagem do cliente:", err);
+                }
             }
         });
 
@@ -202,18 +206,11 @@ function registrarNamespaceAdmin(io) {
             const roomId = roomDe(userId);
             const atendenteNome = socket.data.atendente.nome;
 
-            let atendimentoId;
+            let atendimentoId = null;
             try {
-                atendimentoId = await criarAtendimento({
-                    userId,
-                    motivo: itemFila.motivo,
-                    atendente: atendenteNome,
-                });
+                atendimentoId = await criarAtendimento( { userId, motivo: itemFila.motivo, atendente: atendenteNome });
             } catch (err) {
-                console.error("[atendimento] erro ao criar atendimento no banco:", err);
-                if (typeof ack === "function") ack({ ok: false, erro: "Erro ao iniciar atendimento." });
-                broadcastFila(io);
-                return;
+                console.warn("[atendimento] banco indisponível, sessão seguirá sem persistência do histórico de mensagens:", err.message);
             }
 
             criarSessao({
