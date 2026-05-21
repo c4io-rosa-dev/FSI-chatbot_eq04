@@ -1,37 +1,23 @@
 [
     {
         "id": 1,
-        "name": "John Doe",
+        "name": "Caio Rosa Barber",
         "role": "admin",
-        "email": "admin@email.com",
-        "senha": "admin123"
+        "email": "caio@email.com",
+        "senha": "123"
     },
     {
         "id": 2,
-        "name": "Jane Smith",
-        "role": "user",
-        "email": "user@email.com",
-        "senha": "admin123"
+        "name": "Samuel Goes Barber",
+        "role": "admin",
+        "email": "samuel@email.com",
+        "senha": "123"
     },
     {
         "id": 3,
-        "name": "Alice Johnson",
-        "role": "user",
-        "email": "admin@email.com",
-        "senha": "admin123"
-    },
-    {
-        "id": 4,
-        "name": "Bob Brown",
-        "role": "user",
-        "email": "admin@email.com",
-        "senha": "admin123"
-    },
-    {
-        "id": 5,
-        "name": "Charlie Davis",
-        "role": "user",
-        "email": "admin@email.com",
-        "senha": "admin123"
-    }     
+        "name": "Guilherme Dino Barber",
+        "role": "admin",
+        "email": "dino@email.com",
+        "senha": "123"
+    }  
 ]
