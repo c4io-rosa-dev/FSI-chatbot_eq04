@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import authRoutes from './routes/authRoutes.js';
 import express from 'express';
 import http from 'http';

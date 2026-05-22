@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const STORAGE_KEY = "atendente_nome";
+const apiUrl = import.meta.env.VITE_API_URL?? "http://localhost:3000";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const resp = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+    const resp = await fetch(`${apiUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, senha }),

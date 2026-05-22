@@ -14,8 +14,8 @@ router.post('/login', async (req, res) => {
         });
     }
 
-    const usuarios = await lerDados();
-
+    const usuarios  = await lerDados();
+    console.log(usuarios);
     if (!usuarios) {
         return res.status(500).json({
             erro: 'Erro ao ler usuarios'

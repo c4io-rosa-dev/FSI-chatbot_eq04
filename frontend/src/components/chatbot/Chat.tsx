@@ -33,6 +33,7 @@ export default function Chat() {
   const [etapa, setEtapa] = useState<string>("inicio");
   const motivoEscolhidoRef = useRef<string | null>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     status: supportStatus,
@@ -48,6 +49,7 @@ export default function Chat() {
 
   const supportMensagensRenderizadasRef = useRef(0);
   const statusAnteriorRef = useRef<typeof supportStatus>("idle");
+  const solicitacaoAtendenteIniciadaRef = useRef(false);
 
   // -- Helpers ----------------------------------------------------------------
 
@@ -138,6 +140,7 @@ export default function Chat() {
 
       adicionarMensagemUsuario(valor);
       await enviarViaHttp(valor);
+      inputRef.current?.focus();
     },
     [
       texto,
@@ -148,6 +151,7 @@ export default function Chat() {
       enviarViaHttp,
       adicionarMensagemUsuario,
     ],
+
   );
 
   const handleEncerrar = useCallback(() => {
@@ -195,6 +199,9 @@ export default function Chat() {
   useEffect(() => {
     if (etapa !== "atendente.fila") return;
     if (supportStatus !== "idle" && supportStatus !== "encerrado") return;
+    if (solicitacaoAtendenteIniciadaRef.current) return;
+
+    solicitacaoAtendenteIniciadaRef.current = true;
 
     solicitarAtendente({
       userId,
@@ -221,6 +228,9 @@ export default function Chat() {
     }
 
     if (supportStatus === "encerrado") {
+      setEtapa("atendente.pergunta_continuar");
+      solicitacaoAtendenteIniciadaRef.current = false;
+      
       const labelMotivo =
         supportEncerradoPor === "cliente"
           ? "Atendimento encerrado por você."
@@ -231,6 +241,8 @@ export default function Chat() {
       adicionarMensagemSistema(labelMotivo);
       adicionarMensagemSistema("Posso ajudar com mais alguma coisa? (s/n)");
     }
+
+    
   }, [
     supportStatus,
     supportAtendenteNome,
@@ -280,6 +292,12 @@ export default function Chat() {
         ? "Procurando atendente..."
         : "Online";
 
+
+  useEffect(() =>{
+    if(!inputDesabilitado)
+      inputRef.current?.focus();
+  }, [inputDesabilitado]);
+  
   // -- Render -----------------------------------------------------------------
 
   return (
@@ -393,6 +411,7 @@ export default function Chat() {
       <div className="border-t border-(--copper) bg-(--paper) p-6 shrink-0">
         <form onSubmit={enviarMensagem} className="flex gap-3">
           <input
+            ref={inputRef}
             type="text"
             value={texto}
             onChange={handleChangeInput}
