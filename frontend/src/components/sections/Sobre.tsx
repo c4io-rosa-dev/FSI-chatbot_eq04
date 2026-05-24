@@ -1,4 +1,6 @@
 import { Placeholder } from '@/components/Placeholder';
+import toalha from '@/assets/toalha.jpg';
+import cadeira from '@/assets/cadeira.jpg';
 
 const HIGHLIGHTS: Array<[string, string]> = [
   ['Feito para você', 'Você escolhe seu profissional. Ele se lembra do seu corte.'],
@@ -14,7 +16,7 @@ export function Sobre() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 80, alignItems: 'center' }}>
           <div data-reveal style={{ position: 'relative' }}>
             <div style={{ background: 'var(--paper-soft)', padding: 14, border: '1px solid var(--line)' }}>
-              <Placeholder label="Interior · cadeira do mestre" ratio="4/5" />
+              <Placeholder label="Interior · cadeira do mestre" ratio="4/5" src={cadeira} />
             </div>
             <div
               style={{
@@ -27,7 +29,7 @@ export function Sobre() {
                 border: '1px solid var(--line)',
               }}
             >
-              <Placeholder label="Toalha quente" ratio="1/1" />
+              <Placeholder label="Toalha quente" ratio="1/1" src={toalha}/>
             </div>
           </div>
           <div data-reveal>

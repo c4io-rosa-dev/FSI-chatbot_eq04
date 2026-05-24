@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Icon } from '@/components/Icon';
 import { Placeholder } from '@/components/Placeholder';
 import { useChat } from '@/context/ChatContext';
+import principal from '@/assets/principal.jpg';
+import utilitarios from '@/assets/utilitarios.jpg';
 
 interface HeroProps {
   showStamp?: boolean;
@@ -118,7 +120,7 @@ export function Hero({ showStamp = true }: HeroProps) {
 
           <div data-reveal style={{ position: 'relative' }}>
             <div style={{ background: 'var(--paper-soft)', padding: 14, border: '1px solid var(--line)' }}>
-              <Placeholder label="Retrato · Salão principal" ratio="3/4" />
+              <Placeholder label="Retrato · Salão principal" ratio="3/4" src={principal}/>
             </div>
             <div
               style={{
@@ -132,7 +134,7 @@ export function Hero({ showStamp = true }: HeroProps) {
                 boxShadow: '0 8px 24px rgba(21,17,13,0.12)',
               }}
             >
-              <Placeholder label="Detalhe · Navalha em couro" ratio="1/1" />
+              <Placeholder label="Detalhe · Navalha em couro" ratio="1/1" src={utilitarios}/>
             </div>
             <div
               style={{
