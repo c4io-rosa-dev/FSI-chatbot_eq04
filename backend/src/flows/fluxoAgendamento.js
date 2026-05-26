@@ -1,3 +1,4 @@
+import { calcularTotal } from "../services/adicionarServicoService.js";
 import { criarAgendamento } from "../services/agendamentoService.js";
 
 
@@ -9,7 +10,7 @@ export async function fluxoAgendamento(
         usuario.nome = mensagem;
         usuario.etapa = "pedir.telefone";
 
-        return `Digite seu telefone (apenas números):`;
+        return `Digite seu telefone (apenas números):\n(Digite 'menu' para voltar ao menu principal)`;
     }
 
     if (usuario.etapa === "pedir.telefone") {
@@ -18,8 +19,22 @@ export async function fluxoAgendamento(
 
         const agendamento = await criarAgendamento(usuario);
 
-        return `Agendado!\nNome: ${agendamento.nome}\nServiço: ${agendamento.servico}\nTelefone: ${agendamento.telefone}\n\nObrigado! Você será contatado em breve.`;
+        // para listar os serviços escolhidos
+        const listaServicos = usuario.servicos
+            .map(
+                servico =>
+                    `${servico.nome} - R$ ${servico.valor}`
+            )
+            .join("\n");
+
+        // somar o valor total
+        const total = calcularTotal(
+            usuario.servicos
+        );
+
+
+        return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s): ${listaServicos}\nValor total: R$ ${total}\nTelefone: ${agendamento.telefone}\n\nObrigado! Você será contatado em breve.`;
     }
 
-    return "Por favor, forneça as informações solicitadas.";
+    return "Por favor, forneça as informações solicitadas.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento).";
 }
