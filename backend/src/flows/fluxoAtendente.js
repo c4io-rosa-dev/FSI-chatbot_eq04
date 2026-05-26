@@ -28,7 +28,7 @@ export function fluxoAtendente(usuario, mensagem) {
             usuario.etapa = "menu.principal";
             usuario.servico = null;
             usuario.motivo = null;
-            return MENU_PRINCIPAL;
+            return MENU_PRINCIPAL + "\n\n(Digite 'atendente' a qualquer momento para falar com alguém)";
         }
 
         if (resposta === "n" || resposta === "não" || resposta === "nao") {

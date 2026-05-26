@@ -22,7 +22,7 @@ export function fluxoBarba(
             );
             usuario.etapa = "confirmar.servico";
 
-            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
             
         case "2":
             
@@ -34,7 +34,7 @@ export function fluxoBarba(
 
             usuario.etapa = "confirmar.servico";
 
-            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
             
         case "3":
 
@@ -46,10 +46,10 @@ export function fluxoBarba(
             
             usuario.etapa = "confirmar.servico";
 
-            return `Certa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Certa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
         case "4":
-            return `A duração média dos cortes é de 50 min.\nNossos profissionais são:\nGuilherme Dino\nCaio Rosa\nSamuel Goes\nTodos com mais de 5 anos de experiência em todos os tipos de corte. Nossos produtos são da maior qualidade, como máquinas da Wahl e Rovra.\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `A duração média dos cortes é de 50 min.\nNossos profissionais são:\nGuilherme Dino\nCaio Rosa\nSamuel Goes\nTodos com mais de 5 anos de experiência em todos os tipos de corte. Nossos produtos são da maior qualidade, como máquinas da Wahl e Rovra.\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
         default:
-            return `Escolha uma opção válida (1 a 4) para a barba ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento).`;
+            return `Escolha uma opção válida (1 a 4) para a barba ou digite o número correspondente.\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém | Digite 'sair' para encerrar)`;
     }
 }

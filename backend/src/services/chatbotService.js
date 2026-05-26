@@ -6,8 +6,8 @@ import { fluxoCabelo } from "../flows/fluxoCabelo.js";
 import { fluxoCombos } from "../flows/fluxoCombos.js";
 import { fluxoPlanos } from "../flows/fluxoPlanos.js";
 import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
-import { fluxoAtendente } from "../flows/fluxoAtendente.js";
 import { getUsuario } from "../state/userState.js";
+import { isAttendentRequest, isMenuRequest } from "../flows/fluxoVoltarMenu.js";
 
 
 export async function responder(userId, mensagem) {
@@ -25,6 +25,12 @@ export async function responder(userId, mensagem) {
         usuario.servicos = [];
 
         return `Atendimento encerrado com sucesso!\nQuando quiser iniciar novamente, envie "oi".`;
+    }
+
+    // comando global para chamar atendente a qualquer momento
+    if (isAttendentRequest(mensagem) && usuario.etapa !== "atendente.fila" && usuario.etapa !== "atendente.ativo") {
+        usuario.etapa = "fluxo.atendente";
+        return `Entendido! Vamos conectar você com um atendente.\nPara facilitar, qual é o motivo do contato?\n1 - Dúvidas\n2 - Problemas com agendamento\n3 - Reclamação\n4 - Outro`;
     }
     
     if (usuario.etapa === "inicio") {
@@ -50,7 +56,7 @@ export async function responder(userId, mensagem) {
         case "fluxo.barba":
             return fluxoBarba(usuario, mensagem);
         
-        case "fluxo.combo":
+        case "fluxo.combos":
             return fluxoCombos(usuario, mensagem);
 
         case "fluxo.planos":
@@ -66,7 +72,7 @@ export async function responder(userId, mensagem) {
                 return responder(usuario, "oi");
             } else if (respostaMenu === "não" || respostaMenu === "nao" || respostaMenu === "n") {
                 usuario.etapa = "pedir.nome";
-                return "Perfeito! Agora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)";
+                return "Perfeito! Agora, para finalizarmos o agendamento me diga seu nome (digite apenas seu nome)\n\n(Digite 'menu' para voltar ao menu | Digite 'atendente' para falar com alguém)";
             } else {
                 return "Por favor, digite 'sim' para adicionar mais serviços ou 'não' para finalizar o agendamento.";
             }

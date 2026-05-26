@@ -16,7 +16,7 @@ export function fluxoCombos(usuario, mensagem) {
                 85
             );
             usuario.etapa = "confirmar.servico";
-            return `Excelente escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Excelente escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "2":
             adicionarServico(
@@ -25,7 +25,7 @@ export function fluxoCombos(usuario, mensagem) {
                 65
             );
             usuario.etapa = "confirmar.servico";
-            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "3":
             adicionarServico(
@@ -34,7 +34,7 @@ export function fluxoCombos(usuario, mensagem) {
                 75
             );
             usuario.etapa = "confirmar.servico";
-            return `Perfeito!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Perfeito!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "4":
             adicionarServico(
@@ -43,7 +43,7 @@ export function fluxoCombos(usuario, mensagem) {
                 85
             );
             usuario.etapa = "confirmar.servico";
-            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
 
         case "5":
             adicionarServico(
@@ -52,7 +52,7 @@ export function fluxoCombos(usuario, mensagem) {
                 80
             );
             usuario.etapa = "confirmar.servico";
-            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótima escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "6":
             adicionarServico(
@@ -61,7 +61,7 @@ export function fluxoCombos(usuario, mensagem) {
                 130
             );
             usuario.etapa = "confirmar.servico";
-            return `Excelente escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Excelente escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "7":
             adicionarServico(
@@ -70,7 +70,7 @@ export function fluxoCombos(usuario, mensagem) {
                 150
             );
             usuario.etapa = "confirmar.servico";
-            return `Ótimo!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Ótimo!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "8":
             adicionarServico(
@@ -79,12 +79,12 @@ export function fluxoCombos(usuario, mensagem) {
                 85
             );
             usuario.etapa = "confirmar.servico";
-            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Boa escolha!\nDeseja adicionar mais algum serviço? (Digite 'sim' para adicionar outro ou 'não' para finalizar)\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
           
         case "9":
-            return `Nossos combos combinam serviços com preço especial e atendimento completo.\nOs valores são estimados e podem variar conforme a necessidade do serviço.\nPara agendar, escolha uma das opções listadas e informe seu nome.\n\n(Digite 'menu' para voltar ao menu principal)`;
+            return `Nossos combos combinam serviços com preço especial e atendimento completo.\nOs valores são estimados e podem variar conforme a necessidade do serviço.\nPara agendar, escolha uma das opções listadas e informe seu nome.\n\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
         default:
-            return `Escolha uma opção válida (1 a 8) para os combos ou digite o número correspondente.\n(Digite 'menu' para voltar ao menu principal).\n(Digite 'sair' para encerrar o atendimento).`;
+            return `Escolha uma opção válida (1 a 8) para os combos ou digite o número correspondente.\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém | Digite 'sair' para encerrar)`;
     }   
 }
 
