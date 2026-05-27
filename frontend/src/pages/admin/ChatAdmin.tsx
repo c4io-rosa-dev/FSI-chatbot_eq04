@@ -15,6 +15,8 @@ import type {
   ItemFila,
   MensagemSuporte,
 } from "@/interfaces/ISupportEvents";
+import type { Agendamento } from "@/interfaces/IAgendamento";
+import AgendamentosPanel from "@/components/admin/AgendamentosPanel";
 
 const API_URL =
   (import.meta.env.VITE_API_URL as string | undefined) ?? "http://localhost:3000";
@@ -44,6 +46,7 @@ export default function ChatAdmin() {
   const [conectado, setConectado] = useState(false);
   const [erroConexao, setErroConexao] = useState<string | null>(null);
   const [fila, setFila] = useState<ItemFila[]>([]);
+  const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
   const [chatAtivo, setChatAtivo] = useState<ChatAtivo | null>(null);
   const [mensagens, setMensagens] = useState<MensagemSuporte[]>([]);
   const [clienteDigitando, setClienteDigitando] = useState(false);
@@ -105,6 +108,10 @@ export default function ChatAdmin() {
 
     socket.on("admin:fila:update", (snapshot) => {
       setFila(snapshot);
+    });
+
+    socket.on("admin:agendamentos:update", (snapshot) => {
+      setAgendamentos(snapshot);
     });
 
     socket.on("atendente:conectado", (payload: AtendenteConectadoPayload) => {
@@ -302,7 +309,7 @@ export default function ChatAdmin() {
         style={{
           flex: 1,
           display: "grid",
-          gridTemplateColumns: "320px 1fr",
+          gridTemplateColumns: "320px 1fr 360px",
           minHeight: 0,
         }}
       >
@@ -659,6 +666,11 @@ export default function ChatAdmin() {
             </>
           )}
         </section>
+
+        <AgendamentosPanel
+          agendamentos={agendamentos}
+          onAgendamentosChange={setAgendamentos}
+        />
       </div>
     </div>
   );
