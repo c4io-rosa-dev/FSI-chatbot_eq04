@@ -2,6 +2,8 @@
 // do fluxo de atendimento humano. Devem espelhar os payloads emitidos pelo
 // backend em backend/src/sockets/atendimentoSocket.js.
 
+import type { Agendamento } from './IAgendamento';
+
 export type EncerradoPor = 'cliente' | 'atendente' | 'desconexao';
 export type AutorMensagem = 'cliente' | 'atendente';
 
@@ -73,6 +75,7 @@ export interface AdminEmitEvents {
 export interface AdminListenEvents {
   'admin:fila:atual': (payload: ItemFila[]) => void;
   'admin:fila:update': (payload: ItemFila[]) => void;
+  'admin:agendamentos:update': (payload: Agendamento[]) => void;
   'atendente:conectado': (payload: AtendenteConectadoPayload) => void;
   'support:msg': (payload: MensagemSuporte) => void;
   'support:digitando': (payload: SupportDigitandoPayload) => void;
