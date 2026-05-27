@@ -1,6 +1,6 @@
 import manager from "../bot/manager.js";
 import { fluxoAgendamento } from "../flows/fluxoAgendamento.js";
-import { fluxoAtendente } from "../flows/fluxoAtendente.js";
+import { fluxoAtendente, responderPerguntaContinuar } from "../flows/fluxoAtendente.js";
 import { fluxoBarba } from "../flows/fluxoBarba.js";
 import { fluxoCabelo } from "../flows/fluxoCabelo.js";
 import { fluxoCancelarAgendamento } from "../flows/fluxoCancelarAgendamento.js";
@@ -82,9 +82,8 @@ export async function responder(userId, mensagem) {
                 return "Por favor, digite 'sim' para adicionar mais serviços ou 'não' para finalizar o agendamento.";
             }
 
-        case "fluxo.atendente":
-        case "atendente.pergunta_continuar":
-            return fluxoAtendente(usuario, mensagem);
+        case "pergunta_continuar":
+            return responderPerguntaContinuar(usuario, mensagem);
 
         case "atendente.fila":
             return "Você já está na fila aguardando um atendente. Aguarde um instante.";

@@ -57,7 +57,7 @@ async function encerrarSessaoCompleta({ io, roomId, encerradoPor }) {
     }
 
     const usuario = getUsuario(sessao.userId);
-    usuario.etapa = "atendente.pergunta_continuar";
+    usuario.etapa = "pergunta_continuar";
 
     io.of("/").to(roomId).emit("support:encerrado", { encerradoPor });
     io.of("/admin").to(roomId).emit("support:encerrado", { encerradoPor });

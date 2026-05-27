@@ -239,7 +239,7 @@ export default function Chat() {
     }
 
     if (supportStatus === "encerrado") {
-      setEtapa("atendente.pergunta_continuar");
+      setEtapa("pergunta_continuar");
       solicitacaoAtendenteIniciadaRef.current = false;
       
       const labelMotivo =
