@@ -3,7 +3,6 @@ import { criarAgendamento } from "../services/agendamentoService.js";
 import { isMenuRequest, isAttendentRequest } from "./fluxoVoltarMenu.js";
 import { responder } from "../services/chatbotService.js";
 import { formatarTelefone, validarTelefone, normalizarTelefone } from "../utils/telefone.js";
-import { resetUsuario } from "../state/userState.js";
 
 
 export async function fluxoAgendamento(
@@ -52,10 +51,9 @@ export async function fluxoAgendamento(
 
         const total = calcularTotal(agendamento.servicos);
 
-        // Resetar usuário após agendamento confirmado
-        resetUsuario(userId);
+        usuario.etapa = "pergunta_continuar";
 
-        return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s):\n${listaServicos}\nValor total: R$ ${total}\nTelefone: ${formatarTelefone(agendamento.telefone)}\n\nObrigado! Você será contatado em breve.`;
+        return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s):\n${listaServicos}\nValor total: R$ ${total}\nTelefone: ${formatarTelefone(agendamento.telefone)}\n\nPosso ajudar com mais alguma coisa? (s/n)`;
     }
 
     return "Por favor, forneça as informações solicitadas.\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém | Digite 'sair' para encerrar).";

@@ -5,7 +5,7 @@ const MOTIVOS = {
     "4": "Outro",
 };
 
-const MENU_PRINCIPAL = `Olá novamente! Escolha o que você pretende fazer em nossa barbearia:\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente`;
+const MENU_PRINCIPAL = `Perfeito! Como posso continuar te auxiliando?\n\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente\n6 - Consultar meus agendamentos\n7 - Cancelar um agendamento`;
 
 export function fluxoAtendente(usuario, mensagem) {
     const motivoTexto = MOTIVOS[mensagem.trim()];
@@ -26,7 +26,10 @@ export function responderPerguntaContinuar(usuario, mensagem) {
     if (resposta === "s" || resposta === "sim") {
         usuario.etapa = "menu.principal";
         usuario.servico = null;
+        usuario.servicos = [];
         usuario.motivo = null;
+        usuario.nome = null;
+        usuario.telefone = null;
         return MENU_PRINCIPAL + "\n\n(Digite 'atendente' a qualquer momento para falar com alguém)";
     }
 
