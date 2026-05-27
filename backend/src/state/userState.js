@@ -1,4 +1,3 @@
-
 // Estado do Usuario!
 
 const usuarios = {};
@@ -10,7 +9,9 @@ export function getUsuario(id) {
             servico: null,
             servicos: [],
             nome: null,
-            telefone: null
+            telefone: null,
+            agendamentosCarregados: [],
+            agendamentoSelecionadoId: null
         };
     }
 

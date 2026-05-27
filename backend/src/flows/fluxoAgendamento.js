@@ -2,6 +2,7 @@ import { calcularTotal } from "../services/adicionarServicoService.js";
 import { criarAgendamento } from "../services/agendamentoService.js";
 import { isMenuRequest, isAttendentRequest } from "./fluxoVoltarMenu.js";
 import { responder } from "../services/chatbotService.js";
+import { formatarTelefone, validarTelefone } from "../utils/telefone.js";
 
 
 export async function fluxoAgendamento(
@@ -23,30 +24,33 @@ export async function fluxoAgendamento(
         usuario.nome = mensagem;
         usuario.etapa = "pedir.telefone";
 
-        return `Digite seu telefone (apenas números):\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
+        return `Digite seu telefone (apenas números, com DDD):\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)`;
     }
 
     if (usuario.etapa === "pedir.telefone") {
+        if (!validarTelefone(mensagem)) {
+            return "Telefone inválido. Digite apenas números, com DDD (10 ou 11 dígitos).\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)";
+        }
+
         usuario.telefone = mensagem;
         usuario.etapa = "confirmacao";
 
-        const agendamento = await criarAgendamento(usuario);
+        let agendamento;
+        try {
+            agendamento = await criarAgendamento(usuario);
+        } catch (err) {
+            console.error("[agendamento] erro ao criar:", err.message);
+            usuario.etapa = "menu.principal";
+            return "Não foi possível salvar seu agendamento agora. Tente novamente em instantes ou fale com um atendente.";
+        }
 
-        // para listar os serviços escolhidos
-        const listaServicos = usuario.servicos
-            .map(
-                servico =>
-                    `${servico.nome} - R$ ${servico.valor}`
-            )
+        const listaServicos = agendamento.servicos
+            .map((servico) => `${servico.nome} - R$ ${servico.valor}`)
             .join("\n");
 
-        // somar o valor total
-        const total = calcularTotal(
-            usuario.servicos
-        );
+        const total = calcularTotal(agendamento.servicos);
 
-
-        return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s): ${listaServicos}\nValor total: R$ ${total}\nTelefone: ${agendamento.telefone}\n\nObrigado! Você será contatado em breve.`;
+        return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s):\n${listaServicos}\nValor total: R$ ${total}\nTelefone: ${formatarTelefone(agendamento.telefone)}\n\nObrigado! Você será contatado em breve.`;
     }
 
     return "Por favor, forneça as informações solicitadas.\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém | Digite 'sair' para encerrar).";
