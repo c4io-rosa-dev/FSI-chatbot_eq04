@@ -8,7 +8,7 @@ import { fluxoCombos } from "../flows/fluxoCombos.js";
 import { fluxoConsultarAgendamento } from "../flows/fluxoConsultarAgendamento.js";
 import { fluxoPlanos } from "../flows/fluxoPlanos.js";
 import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
-import { getUsuario } from "../state/userState.js";
+import { getUsuario, resetUsuario } from "../state/userState.js";
 import { isAttendentRequest, isMenuRequest } from "../flows/fluxoVoltarMenu.js";
 
 
@@ -20,12 +20,7 @@ export async function responder(userId, mensagem) {
     if (
         mensagem.toLowerCase() === "sair"
     ) {
-
-        usuario.etapa = "inicio";
-        usuario.nome = null;
-        usuario.telefone = null;
-        usuario.servicos = [];
-
+        resetUsuario(userId);
         return `Atendimento encerrado com sucesso!\nQuando quiser iniciar novamente, envie "oi".`;
     }
 
@@ -98,12 +93,14 @@ export async function responder(userId, mensagem) {
             return "Você já está conversando com um atendente. Use o painel de mensagens para continuar.";
 
         case "encerrado":
-            return "Atendimento encerrado. Para iniciar uma nova conversa, recarregue a página.";
+            // Resetar o usuário para que ele possa conversar novamente
+            resetUsuario(userId);
+            return await responder(userId, "oi");
 
         case "pedir.nome":
         case "pedir.telefone":
         case "confirmacao":
-            return await fluxoAgendamento(usuario, mensagem);
+            return await fluxoAgendamento(usuario, mensagem, userId);
 
         default:
             return "Desculpe, não entendi sua resposta. Pode tentar novamente ou escolher uma das opções numeradas?";

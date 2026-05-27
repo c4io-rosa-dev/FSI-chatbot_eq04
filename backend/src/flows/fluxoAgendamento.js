@@ -2,12 +2,14 @@ import { calcularTotal } from "../services/adicionarServicoService.js";
 import { criarAgendamento } from "../services/agendamentoService.js";
 import { isMenuRequest, isAttendentRequest } from "./fluxoVoltarMenu.js";
 import { responder } from "../services/chatbotService.js";
-import { formatarTelefone, validarTelefone } from "../utils/telefone.js";
+import { formatarTelefone, validarTelefone, normalizarTelefone } from "../utils/telefone.js";
+import { resetUsuario } from "../state/userState.js";
 
 
 export async function fluxoAgendamento(
     usuario,
-    mensagem
+    mensagem,
+    userId
 ) {
     // Verificar se é um comando de menu ou atendente
     if (isMenuRequest(mensagem)) {
@@ -32,7 +34,7 @@ export async function fluxoAgendamento(
             return "Telefone inválido. Digite apenas números, com DDD (10 ou 11 dígitos).\n(Digite 'menu' para voltar | Digite 'atendente' para falar com alguém)";
         }
 
-        usuario.telefone = mensagem;
+        usuario.telefone = normalizarTelefone(mensagem);
         usuario.etapa = "confirmacao";
 
         let agendamento;
@@ -49,6 +51,9 @@ export async function fluxoAgendamento(
             .join("\n");
 
         const total = calcularTotal(agendamento.servicos);
+
+        // Resetar usuário após agendamento confirmado
+        resetUsuario(userId);
 
         return `Agendado!\nNome: ${agendamento.nome}\nServiço(s) escolhido(s):\n${listaServicos}\nValor total: R$ ${total}\nTelefone: ${formatarTelefone(agendamento.telefone)}\n\nObrigado! Você será contatado em breve.`;
     }

@@ -7,6 +7,7 @@ export async function treinarBot(manager) {
   manager.addDocument("pt", "boa noite", "saudacao");
   manager.addDocument("pt", "eae", "saudacao");
   manager.addDocument("pt", "opa", "saudacao");
+  manager.addDocument("pt", "quero cortar o cabelo", "saudacao")
 
   // manager.addAnswer(
   //   "pt",
