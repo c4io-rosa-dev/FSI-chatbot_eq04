@@ -21,6 +21,7 @@ import {
     encerrarAtendimento,
     salvarMensagem,
 } from "../repositories/atendimentoRepository.js";
+import { listarTodos as listarAgendamentos } from "../repositories/agendamentoRepository.js";
 import { getUsuario } from "../state/userState.js";
 import jwt from 'jsonwebtoken';
 
@@ -178,6 +179,10 @@ function registrarNamespaceAdmin(io) {
 
     nsp.on("connection", (socket) => {
         socket.emit("admin:fila:atual", listarFila());
+
+        listarAgendamentos()
+            .then((lista) => socket.emit("admin:agendamentos:update", lista))
+            .catch((err) => console.error("[agendamento] snapshot inicial falhou:", err.message));
 
         socket.on("atendente:aceitar", async ({ userId }, ack) => {
             if (!userId) {
