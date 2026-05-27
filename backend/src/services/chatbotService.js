@@ -3,7 +3,9 @@ import { fluxoAgendamento } from "../flows/fluxoAgendamento.js";
 import { fluxoAtendente } from "../flows/fluxoAtendente.js";
 import { fluxoBarba } from "../flows/fluxoBarba.js";
 import { fluxoCabelo } from "../flows/fluxoCabelo.js";
+import { fluxoCancelarAgendamento } from "../flows/fluxoCancelarAgendamento.js";
 import { fluxoCombos } from "../flows/fluxoCombos.js";
+import { fluxoConsultarAgendamento } from "../flows/fluxoConsultarAgendamento.js";
 import { fluxoPlanos } from "../flows/fluxoPlanos.js";
 import { fluxoPrincipal } from "../flows/fluxoPrincipal.js";
 import { getUsuario } from "../state/userState.js";
@@ -14,7 +16,7 @@ export async function responder(userId, mensagem) {
     const usuario = getUsuario(userId);
 
 
-    // colocando comando global para encerrar atendimento
+    // encerra atendimento qualquer hora
     if (
         mensagem.toLowerCase() === "sair"
     ) {
@@ -27,7 +29,7 @@ export async function responder(userId, mensagem) {
         return `Atendimento encerrado com sucesso!\nQuando quiser iniciar novamente, envie "oi".`;
     }
 
-    // comando global para chamar atendente a qualquer momento
+    // comando para chamar atendente
     if (isAttendentRequest(mensagem) && usuario.etapa !== "atendente.fila" && usuario.etapa !== "atendente.ativo") {
         usuario.etapa = "fluxo.atendente";
         return `Entendido! Vamos conectar você com um atendente.\nPara facilitar, qual é o motivo do contato?\n1 - Dúvidas\n2 - Problemas com agendamento\n3 - Reclamação\n4 - Outro`;
@@ -42,7 +44,7 @@ export async function responder(userId, mensagem) {
             // inicia atendimento com lista de serviços zerada
             usuario.servicos = [];
 
-            return `Olá! Seja bem-vindo a Barbearia ACDKS!\nExplore os nossos serviços e marque um horário conosco.\nPara começar, escolha o que você pretende fazer em nossa barbearia:\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente`;
+            return `Olá! Seja bem-vindo a Barbearia ACDKS!\nExplore os nossos serviços e marque um horário conosco.\nPara começar, escolha o que você pretende fazer em nossa barbearia:\n1 - Cabelo\n2 - Barba\n3 - Combos\n4 - Planos\n5 - Falar com um atendente\n6 - Consultar meus agendamentos\n7 - Cancelar um agendamento`;
         }
     }
 
@@ -61,6 +63,14 @@ export async function responder(userId, mensagem) {
 
         case "fluxo.planos":
             return fluxoPlanos(usuario, mensagem);
+
+        case "fluxo.consultar.telefone":
+            return fluxoConsultarAgendamento(usuario, mensagem);
+
+        case "fluxo.cancelar.telefone":
+        case "fluxo.cancelar.selecao":
+        case "fluxo.cancelar.confirmacao":
+            return fluxoCancelarAgendamento(usuario, mensagem);
 
         case "fluxo.atendente":
             return fluxoAtendente(usuario, mensagem);
