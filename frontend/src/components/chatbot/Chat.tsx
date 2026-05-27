@@ -1,6 +1,13 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { useSupportSocket } from "@/hooks/useSupportSocket";
 import type { MensagemSuporte } from "@/interfaces/ISupportEvents";
+import { mascararTelefone, normalizarTelefone } from "@/utils/telefone";
+
+const ETAPAS_TELEFONE = new Set([
+  "pedir.telefone",
+  "fluxo.consultar.telefone",
+  "fluxo.cancelar.telefone",
+]);
 
 type TipoMensagem = "usuario" | "bot" | "atendente" | "sistema";
 
@@ -138,8 +145,10 @@ export default function Chat() {
         motivoEscolhidoRef.current = MOTIVO_LABEL[valor];
       }
 
+      const valorEnviar = ETAPAS_TELEFONE.has(etapa) ? normalizarTelefone(valor) : valor;
+
       adicionarMensagemUsuario(valor);
-      await enviarViaHttp(valor);
+      await enviarViaHttp(valorEnviar);
       inputRef.current?.focus();
     },
     [
@@ -160,12 +169,14 @@ export default function Chat() {
 
   const handleChangeInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTexto(e.target.value);
+      const bruto = e.target.value;
+      const proximo = ETAPAS_TELEFONE.has(etapa) ? mascararTelefone(bruto) : bruto;
+      setTexto(proximo);
       if (supportStatus === "ativo") {
         notificarDigitando();
       }
     },
-    [supportStatus, notificarDigitando],
+    [supportStatus, notificarDigitando, etapa],
   );
 
   // -- Effects ----------------------------------------------------------------
